@@ -19,4 +19,6 @@ int searchStudent(int roll);
 
 void deleteStudent(int roll);
 
+void sortStudents(int mode);
+
 #endif

@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <string.h>
 #include "student.h"
 
 struct Student students[MAX_STUDENTS];
@@ -38,7 +39,17 @@ void viewStudents() {
     return;
   }
 
-  // students[0] = { 35, "Ganesh", 100 };
+  int choice;
+  printf("\n--- Sort Options ---\n");
+  printf("1. By Roll Number\n");
+  printf("2. By Name\n");
+  printf("3. By Marks\n");
+  printf("Enter your choice: ");
+  scanf("%d", &choice);
+
+  if (choice >= 1 && choice <= 3) {
+    sortStudents(choice);
+  }
 
   printf("\n ---Student List---\n");
   for (int i = 0; i < count; i++) {
@@ -72,4 +83,37 @@ void deleteStudent(int roll) {
   count--;
 
   printf("Student with roll %d deleted succesfully.\n", roll);
+}
+
+void sortStudents(int mode) {
+  if (count <= 1) {
+    printf("Not enough students to sort.\n");
+    return;
+  }
+
+  for (int i = 0; i < count - 1; i++) {
+    for (int j = 0; j < count - i - 1; j++) {
+      int swap = 0;
+
+      if (mode == 1) {
+        if (students[j].roll > students[j + 1].roll) 
+          swap = 1;
+      } else if (mode == 2) {
+        if (strcmp(students[j].name, students[j + 1].name) > 0) 
+          swap = 1;
+      } else if (mode == 3) {
+        if (students[j].marks > students[j + 1].marks) 
+          swap = 1;
+      }
+
+      if (swap) {
+        struct Student temp = students[j];
+
+        students[j] = students[j + 1];
+        students[j + 1] = temp;
+      }
+    }
+  }
+
+  printf("Sorted successfully!\n");
 }

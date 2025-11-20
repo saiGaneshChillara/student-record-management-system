@@ -17,7 +17,7 @@ void addStudent() {
   scanf("%d", &s.roll);
 
   if (searchStudent(s.roll) != -1) {
-    printf("Error: Roll number already exists\n\n");
+    printf("Error: Roll number %d already exists\n\n", s.roll);
     return;
   }
 
@@ -55,4 +55,21 @@ int searchStudent(int roll) {
   }
 
   return -1;
+}
+
+void deleteStudent(int roll) {
+  int index = searchStudent(roll);
+
+  if (index == -1) {
+    printf("Student with roll %d not found\n", roll);
+    return;
+  }
+
+  for (int i = index; i < count - 1; i++) {
+    students[i] =  students[i + 1];
+  }
+
+  count--;
+
+  printf("Student with roll %d deleted succesfully.\n", roll);
 }

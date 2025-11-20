@@ -7,7 +7,9 @@ int main() {
   while (1) {
     printf("1. Add student\n");
     printf("2. View Students\n");
-    printf("3.Exit\n");
+    printf("3.Search Student\n");
+    printf("4. Delete Student\n");
+    printf("5. Exit\n");
     printf("Choose an option: ");
 
     if (scanf("%d", &choice) != 1) {
@@ -29,12 +31,21 @@ int main() {
 
         int index = searchStudent(r);
         if (index == -1) {
-          printf("Student nout found.\n");
+          printf("Student not found.\n");
         } else {
           printf("Roll: %d | Name: %s | Marks: %.2f\n", students[index].roll, students[index].name, students[index].marks);
         }
         break;
       }
+      case 4: {
+        int r;
+        printf("Enter roll number to delete: ");
+        scanf("%d", &r);
+
+        deleteStudent(r);
+        break;
+      }
+      case 5: return 0;
       default: printf("Invalid choice\n");
     }
   }

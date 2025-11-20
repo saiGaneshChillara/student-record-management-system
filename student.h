@@ -17,4 +17,6 @@ void addStudent();
 void viewStudents();
 int searchStudent(int roll);
 
+void deleteStudent(int roll);
+
 #endif
